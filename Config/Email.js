@@ -10,7 +10,7 @@ const transporter = nodemailer.createTransport({
         pass: process.env.GMAIL_PASSWORD,
     },
 });
-console.log(process.env.GMAIL_PASSWORD)
+console.log("gpass", process.env.GMAIL_PASSWORD)
 const sendMail = async (to, subject, templateName, templateData) => {
     
     const templatePath = path.resolve(process.cwd(), 'Views', 'emails', `${templateName}.ejs`);

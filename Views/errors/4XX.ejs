@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= page_title %></title>
+    <link rel="stylesheet" href="assets/css/4XX.css">
+    <style>
+       .marquee {
+            white-space: nowrap;
+            overflow: hidden;
+            animation: marquee-bounce 2s linear infinite;
+        }
+
+        @keyframes marquee-bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateX(0); }
+            40% { transform: translateX(-25%); }
+            60% { transform: translateX(-50%); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="copy-container center-xy">
+          <p>
+            <%= error_code %>, <%= error_message %>
+          </p>
+        </div>
+      </div>
+</body>
+</html>

@@ -10,36 +10,42 @@ const transporter = nodemailer.createTransport({
         pass: process.env.GMAIL_PASSWORD,
     },
 });
-console.log("gpass", process.env.GMAIL_PASSWORD)
-const sendMail = async (to, subject, templateName, templateData) => {
+// console.log("gpass", process.env.GMAIL_PASSWORD)
+// const sendMail = async (to, subject, templateName, templateData) => {
     
-    const templatePath = path.resolve(process.cwd(), 'Views', 'emails', `${templateName}.ejs`);
-// console.log(templatePath)
-    try {
-        require.resolve(templatePath);
-    } catch (err) {
-        console.warn(`Template not found for "${templateName}", using default template.`);
-        return sendMail(to, subject, 'emailTemplate', templateData);
-    }
+//     const templatePath = path.resolve(process.cwd(), 'Views', 'emails', `${templateName}.ejs`);
+// // console.log(templatePath)
+//     try {
+//         require.resolve(templatePath);
+//     } catch (err) {
+//         console.warn(`Template not found for "${templateName}", using default template.`);
+//         return sendMail(to, subject, 'emailTemplate', templateData);
+//     }
 
-    const html = await ejs.renderFile(templatePath, templateData);
-    // console.log(html)
-    const mailOptions = {
-        from: process.env.GMAIL_USER,
-        to,
-        subject,
-        html,
-    };
-    try {
-        // console.log(mailOptions)
-        const info = await transporter.sendMail(mailOptions);
+//     const html = await ejs.renderFile(templatePath, templateData);
+//     // console.log(html)
+//     const mailOptions = {
+//         from: process.env.GMAIL_USER,
+//         to,
+//         subject,
+//         html,
+//     };
+//     try {
+//         // console.log(mailOptions)
+//         const info = await transporter.sendMail(mailOptions);
        
-        console.log('Email sent:', info.response);
-    } catch (error) {
-        console.error('Error sending email:', error.message);
-    }
-};
+//         console.log('Email sent:', info.response);
+//     } catch (error) {
+//         console.error('Error sending email:', error.message);
+//     }
+// };
+
+
+const sendRegistrationMail = async () => {};
+
+
 
 module.exports = {
-    sendMail,
+    transporter,
+    sendRegistrationMail,
 };

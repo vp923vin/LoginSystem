@@ -15,19 +15,19 @@
 
     <!-- This snippet uses Font Awesome 5 Free as a dependency. You can download it at fontawesome.io! -->
     <div class="container">
-        <div class="row">
-            <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+        <div class="row my-5">
+            <div class="col-sm-9 col-md-7 col-lg-5 mx-auto my-5">
                 <div class="card border-0 shadow rounded-3 my-5">
                     <div class="card-body p-4 p-sm-5">
                         <h5 class="card-title text-center mb-5 fw-light fs-5">Sign In</h5>
-                        <form>
+                        <form method="post" action="/login">
                             <div class="form-floating mb-3">
-                                <input type="email" class="form-control" id="floatingInput"
+                                <input type="email" class="form-control" name="email" id="floatingInput"
                                     placeholder="name@example.com">
                                 <label for="floatingInput">Email address</label>
                             </div>
                             <div class="form-floating mb-3">
-                                <input type="password" class="form-control" id="floatingPassword"
+                                <input type="password" class="form-control" name="password" id="floatingPassword"
                                     placeholder="Password">
                                 <label for="floatingPassword">Password</label>
                             </div>
@@ -44,14 +44,14 @@
                             </div>
                             <hr class="my-4">
                             <div class="d-grid mb-2">
-                                <button class="btn btn-google btn-login text-uppercase fw-bold" type="submit">
-                                    <i class="fab fa-google me-2"></i> Sign in with Google
-                                </button>
+                                <a class="text-uppercase fw-bold" type="submit">
+                                    Forget Password?
+                                </a>
                             </div>
                             <div class="d-grid">
-                                <button class="btn btn-facebook btn-login text-uppercase fw-bold" type="submit">
-                                    <i class="fab fa-facebook-f me-2"></i> Sign in with Facebook
-                                </button>
+                                <a class="text-uppercase fw-bold" type="submit">
+                                     Don't Have Account?
+                                </a>
                             </div>
                         </form>
                     </div>

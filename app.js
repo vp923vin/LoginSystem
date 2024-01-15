@@ -1,28 +1,35 @@
-const  Express = require('express');
+const Express = require('express');
 const path = require('path');
+const cors = require('cors');
+const BodyParser = require('body-parser');
+const session = require('express-session');
 require('dotenv').config();
 const app = Express();
 
-const MongoConnect = require('./Config/mongoDB');
+const { connectToMongoDB } = require('./Config/mongoDB');
 const MysqlConnect = require('./Config/sqlDB');
 const configRoutes = require('./Config/Routes');
 const { generateToken, verifyToken } = require('./Config/JWT');
-
 const mailConfig = require('./Config/Email');
+const sessionConfig = require('./Config/Session');
 const PORT = process.env.PORT || 3000;
 // set paths
 app.set('views', path.join(__dirname, 'Views'));
 app.set('view engine', 'ejs');
 
-// use any one as database
-MongoConnect();
-MysqlConnect();
-
+// connect to MongoDB
+connectToMongoDB();
 // config routes
 configRoutes(app);
 
+// session settings
+
+
 // Serve static files from the Public directory
 app.use(Express.static('Public'));
+app.use(cors());
+app.use(session(sessionConfig));
+ 
 
 
 // Test JWT functionality
@@ -40,12 +47,12 @@ app.get('/send-custom-email', async (req, res) => {
     const emailSubject = 'Vipin patel';
     const templateName = 'customTemplate';  // Name of the template file without the extension
     const templateData = { username: 'Vipin Patel' };
-
     await mailConfig.sendMail(userEmail, emailSubject, templateName, templateData);
-
     res.send('Email sent successfully!');
 });
-
+// app.post('/register', async (req, res) => {
+//     console.log("app code", req.body);
+// })
 
 app.listen(PORT, (req, res) => {
     console.log('listening on', PORT)

@@ -1,10 +1,18 @@
 const express = require('express');
 const router = express.Router();
-const {  webController } = require('../Controllers/LoginController');
+const {  LoginPage, loginUser , userDashboard, logOutUser } = require('../Controllers/LoginController');
+const {  registerPage, userRegistration } = require('../Controllers/RegisterController');
 // web routes here
 router.get('/', (req, res) => {
     return res.send('Hello, web!');
 });
+
+router.get('/register', registerPage);
+router.get('/login', LoginPage);
+router.post('/register', userRegistration);
+router.post('/login', loginUser);
+router.get('/dashboard', userDashboard);
+router.get('/logout', logOutUser);
 
 // Errors Routes 4XX
 router.get('/400', (req, res) => {
@@ -21,7 +29,6 @@ router.get('/401', (req, res) => {
         error_message: 'Unauthorized - The request requires user authentication.'
     });
 });
-
 router.get('/403', (req, res) => {
     return res.render('errors/4XX', {
         error_code: 403, 
@@ -38,19 +45,11 @@ router.get('/404', (req, res) => {
 });
 
 // Error Routes 5XX 
-
 router.get('/500', (req, res) => {
     return res.render('errors/5XX', {
         error_code: 500,
         page_title: '500 - Internal Server Error',
         error_message: 'Internal Serever Error - An unexpected condition prevented the server from fulfilling the request.'
-    });
-});
-router.get('/501', (req, res) => {
-    return res.render('errors/5XX', {
-        error_code: 501,
-        page_title: '501 - Not Implemented',
-        error_message: 'Not Implemented - The server does not support the functionality required to fulfill the request.'
     });
 });
 router.get('/502', (req, res) => {
@@ -75,7 +74,7 @@ router.get('/504', (req, res) => {
     });
 });
 
-router.get('/login', (req, res) => { 
+router.get('/test-route', (req, res) => { 
     return res.render('pages/includes/main', {content : '../home.ejs', page_title : 'Home' });
 });
 

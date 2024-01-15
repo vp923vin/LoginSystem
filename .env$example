@@ -1,0 +1,25 @@
+# Database connection settings
+# mongodb
+DB_CONNECTION_STRING=
+
+
+# mysql 
+DATABASE_NAME=
+DATABASE_HOST= 
+DATABASE_USER=
+DATABASE_PASSWORD=
+
+
+# gmail connection settings
+GMAIL_USER=
+GMAIL_PASSWORD=
+
+# JWT connection settings
+JWT_SECRET_KEY=
+
+
+# PORTS
+PORT=
+
+# Session Settings
+SESSION_SECRET_KEY=

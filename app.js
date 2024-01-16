@@ -9,7 +9,7 @@ const app = Express();
 const { connectToMongoDB } = require('./Config/mongoDB');
 const MysqlConnect = require('./Config/sqlDB');
 const configRoutes = require('./Config/Routes');
-const { generateToken, verifyToken } = require('./Config/JWT');
+const { generateToken, verifyToken } = require('./Config/Jwt');
 const mailConfig = require('./Config/Email');
 const sessionConfig = require('./Config/Session');
 const PORT = process.env.PORT || 3000;
@@ -28,7 +28,7 @@ configRoutes(app);
 // Serve static files from the Public directory
 app.use(Express.static('Public'));
 app.use(cors());
-app.use(session(sessionConfig));
+// app.use(session(sessionConfig));
  
 
 
@@ -50,9 +50,7 @@ app.get('/send-custom-email', async (req, res) => {
     await mailConfig.sendMail(userEmail, emailSubject, templateName, templateData);
     res.send('Email sent successfully!');
 });
-// app.post('/register', async (req, res) => {
-//     console.log("app code", req.body);
-// })
+
 
 app.listen(PORT, (req, res) => {
     console.log('listening on', PORT)

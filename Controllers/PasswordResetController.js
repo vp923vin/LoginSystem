@@ -1,8 +1,9 @@
 
 
 const forgertPassword = (req, res) => {
-    return res.render('pages//forget-password');
+    return res.render('pages/forget-password');
 };
+
 const sendResetPasswordLink = (req, res) => {
     const { email } = req.body;
     

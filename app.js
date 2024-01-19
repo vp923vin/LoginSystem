@@ -7,7 +7,6 @@ require('dotenv').config();
 const app = Express();
 
 const { connectToMongoDB } = require('./Config/mongoDB');
-const MysqlConnect = require('./Config/sqlDB');
 const configRoutes = require('./Config/Routes');
 const { generateToken, verifyToken } = require('./Config/Jwt');
 const mailConfig = require('./Config/Email');

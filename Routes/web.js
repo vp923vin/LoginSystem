@@ -1,19 +1,25 @@
 const express = require('express');
 const router = express.Router();
+const { isLogin, isLogout }  = require('../Middleware/Auth');
+
 const {  LoginPage, loginUser , userDashboard, logOutUser } = require('../Controllers/LoginController');
 const {  registerPage, userRegistration } = require('../Controllers/RegisterController');
+const { forgertPassword, sendResetPasswordLink,  resetPassword, updateUserPassword } = require('../Controllers/PasswordResetController');
 // web routes here
 router.get('/', (req, res) => {
     return res.send('Hello, web!');
 });
 
-router.get('/register', registerPage);
-router.get('/login', LoginPage);
-router.post('/register', userRegistration);
-router.post('/login', loginUser);
-router.get('/dashboard', userDashboard);
-router.get('/logout', logOutUser);
-
+router.get('/register', isLogout,  registerPage);
+router.get('/login', isLogout,  LoginPage);
+router.post('/register', isLogout, userRegistration);
+router.post('/login', isLogout,  loginUser);
+router.get('/dashboard', isLogin,  userDashboard);
+router.get('/logout', isLogin,  logOutUser);
+router.get('/forget-password', isLogout, forgertPassword);
+router.post('/forget-password', isLogout, sendResetPasswordLink);
+router.get('/reset-password/:token', isLogout, resetPassword);
+router.post('/reset-password', isLogout, updateUserPassword);
 // Errors Routes 4XX
 router.get('/400', (req, res) => {
     return res.render('errors/4XX', {

@@ -1,7 +1,6 @@
 const User = require('../Models/UsersModel');
 const bcrypt = require('bcrypt');
 
-
 const LoginPage = (req, res) => {
   // Web logic here
   res.render('pages/login', { message: "" });
@@ -37,13 +36,12 @@ const logOutUser = async (req, res) => {
   req.session.destroy((err) => {
     if (err) {
       console.error(err);
-      res.redirect('/500');
+      return res.redirect('/500');
     } else {
-      res.redirect('/login'); // Redirect to home or login page
+      return res.redirect('/login'); 
     }
   });
 };
-
 
 module.exports = {
   LoginPage,

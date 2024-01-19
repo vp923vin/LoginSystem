@@ -18,7 +18,7 @@ router.get('/dashboard', isLogin,  userDashboard);
 router.get('/logout', isLogin,  logOutUser);
 router.get('/forget-password', isLogout, forgertPassword);
 router.post('/forget-password', isLogout, sendResetPasswordLink);
-router.get('/reset-password/:token', isLogout, resetPassword);
+router.get('/reset-password/', isLogout, resetPassword);
 router.post('/reset-password', isLogout, updateUserPassword);
 // Errors Routes 4XX
 router.get('/400', (req, res) => {
